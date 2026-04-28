@@ -2,6 +2,8 @@ package com.jspider.spring_boot_simple_crud_with_mysql.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.NativeQuery;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jspider.spring_boot_simple_crud_with_mysql.entity.Product;
 
+// Rule Applied
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findByName(String name);
@@ -21,4 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Modifying
 	@Transactional
 	void deleteProductByPrice(double price);
+	
+	Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
