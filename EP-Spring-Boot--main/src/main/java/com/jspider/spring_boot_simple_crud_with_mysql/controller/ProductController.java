@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,16 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jspider.spring_boot_simple_crud_with_mysql.dao.ProductDao;
 import com.jspider.spring_boot_simple_crud_with_mysql.entity.Product;
+import com.jspider.spring_boot_simple_crud_with_mysql.responses.PaginatedProductResponse;
 import com.jspider.spring_boot_simple_crud_with_mysql.responses.ResponseStructure;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+// Rule Applied
 @RestController
 @RequestMapping(value = "/product")
 @CrossOrigin(value = "")
@@ -151,6 +155,24 @@ public class ProductController {
 	        return new ResponseEntity<Product>(HttpStatus.NOT_FOUND); // Make sure this line ends with ;
 	    }
 	}
+
+	@GetMapping(value = "/products")
+	public PaginatedProductResponse getProductsPaginatedController(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "sortBy", defaultValue = "id") String sortBy,
+			@RequestParam(name = "direction", defaultValue = "asc") String direction,
+			@RequestParam(name = "name", required = false) String name) {
+		System.out.println("getProductsPaginatedController called with page=" + page + ", size=" + size + ", sortBy=" + sortBy + ", direction=" + direction + ", name=" + name);
+		Page<Product> productPage = productDao.getPaginatedProductsDao(page, size, sortBy, direction, name);
+		PaginatedProductResponse response = new PaginatedProductResponse();
+		response.setContent(productPage.getContent());
+		response.setCurrentPage(productPage.getNumber());
+		response.setTotalItems(productPage.getTotalElements());
+		response.setTotalPages(productPage.getTotalPages());
+		return response;
+	}
+
 
 	
 	
