@@ -126,3 +126,17 @@ spring-boot-simple-crud-with-mysql
 
 
 
+---
+
+## 📚 Planning Documents
+
+In addition to the Spring Boot Product API implementation described above, this repository also hosts a set of **agile planning artifacts** for two programs of work related to mobile crash reporting: the **Crashlytics crash-reporting pipeline** (decomposed into epics and user stories) and the **Fabric → Firebase Crashlytics migration** (decomposed into epics with Given/When/Then acceptance criteria).
+
+These planning documents are **independent reference material** authored in plain GitHub-flavored Markdown. They describe a generic mobile crash-reporting pipeline and a migration program; they do **not** describe, modify, or extend the runtime behavior of the Spring Boot Product API hosted in this repository. The Spring Boot service, its `pom.xml`, its `application.properties`, its Java sources, and its tests are entirely unaffected by these documents.
+
+The full documentation tree is rooted at [`docs/`](./docs/), with [`docs/README.md`](./docs/README.md) acting as its index and explaining the identifier conventions (`CR-EPIC-NN`, `CR-STORY-NNN`, `FF-EPIC-NN`, `FF-AC-NNN`).
+
+| Document | Description |
+|----------|-------------|
+| [Crashlytics Crash Reporting Pipeline — Epics & Stories](./docs/crashlytics-pipeline/epics-and-stories.md) | Ten epics (`CR-EPIC-01` … `CR-EPIC-10`) decomposing the crash-reporting pipeline from on-device crash capture through dashboard delivery, with 3–6 user stories per epic in the "As a … I want … so that …" template. |
+| [Fabric → Firebase Crashlytics Migration — Epics & Acceptance Criteria](./docs/fabric-to-firebase-migration/epics-and-acceptance-criteria.md) | Eleven epics (`FF-EPIC-01` … `FF-EPIC-11`) covering the migration from Fabric to Firebase Crashlytics, each with 3–6 Given/When/Then acceptance criteria keyed `FF-AC-NNN`. |
