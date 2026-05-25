@@ -10,15 +10,15 @@ This document decomposes each of those ten stages into a single epic keyed `CR-E
 
 ```mermaid
 flowchart LR
-  S1[CR-EPIC-01<br/>Capture] --> S2[CR-EPIC-02<br/>Persist]
-  S2 --> S3[CR-EPIC-03<br/>Upload]
-  S3 --> S4[CR-EPIC-04<br/>Ingest]
-  S4 --> S5[CR-EPIC-05<br/>Symbolicate]
-  S5 --> S6[CR-EPIC-06<br/>Group]
-  S6 --> S7[CR-EPIC-07<br/>Store]
-  S7 --> S8[CR-EPIC-08<br/>Alert]
-  S7 --> S9[CR-EPIC-09<br/>Dashboard]
-  S8 --> S10[CR-EPIC-10<br/>Lifecycle]
+  S1["CR-EPIC-01 Capture"] --> S2["CR-EPIC-02 Persist"]
+  S2 --> S3["CR-EPIC-03 Upload"]
+  S3 --> S4["CR-EPIC-04 Ingest"]
+  S4 --> S5["CR-EPIC-05 Symbolicate"]
+  S5 --> S6["CR-EPIC-06 Group"]
+  S6 --> S7["CR-EPIC-07 Store"]
+  S7 --> S8["CR-EPIC-08 Alert"]
+  S7 --> S9["CR-EPIC-09 Dashboard"]
+  S8 --> S10["CR-EPIC-10 Lifecycle"]
   S9 --> S10
 ```
 
@@ -57,7 +57,7 @@ flowchart LR
 
 #### CR-STORY-001 — Capture JVM Uncaught Exceptions
 
-As a `mobile app user`, I want any uncaught Java or Kotlin exception in my Android app to be recorded before the process exits, so that the engineering team can diagnose and fix the issue before I encounter it again. (References [fatal exception](./glossary.md#fatal-exception).)
+As a `mobile app user`, I want any uncaught Java or Kotlin [fatal exception](./glossary.md#fatal-exception) in my Android app to be recorded before the process exits, so that the engineering team can diagnose and fix the issue before I encounter it again.
 
 #### CR-STORY-002 — Capture iOS Uncaught Exceptions and Signals
 
@@ -136,7 +136,7 @@ As a `mobile app user`, I want the SDK to defer uploads when I am on a metered c
 
 #### CR-STORY-011 — Idempotent Retries
 
-As an `on-call engineer`, I want each crash record to be uploaded with a deterministic UUID so that network retries do not produce duplicate server-side records, so that issue counts in the dashboard reflect reality rather than retry storms.
+As an `on-call engineer`, I want each crash record to be uploaded with a deterministic UUID that makes network retries idempotent, so that issue counts in the dashboard reflect reality rather than retry storms.
 
 #### CR-STORY-012 — Delete Local Record Only After Server Acknowledgement
 
@@ -148,7 +148,7 @@ As an `SRE`, I want the on-device crash-record file to be deleted only after the
 
 **In Scope:**
 - Accept HTTPS uploads from the on-device SDK at a versioned API endpoint.
-- Authenticate uploads via a per-application API key (or equivalent token).
+- Authenticate uploads via a per-application credential or signed payload.
 - Enforce a JSON-schema (or protobuf-schema) validation on every payload.
 - Quarantine payloads that fail schema validation with a structured rejection reason.
 - Emit metrics (counters, histograms) for upload volume, validation failure rate, and per-app upload rate.
@@ -163,7 +163,7 @@ As an `SRE`, I want the on-device crash-record file to be deleted only after the
 
 #### CR-STORY-013 — Authenticate Every Upload
 
-As an `SRE`, I want every uploaded crash record to be authenticated via a per-application API key, so that the ingestion endpoint cannot be flooded by anonymous attackers and our crash counts remain trustworthy. (See [fingerprint](./glossary.md#fingerprint) for downstream grouping.)
+As an `SRE`, I want every uploaded crash record to be authenticated via a per-application credential, so that the ingestion endpoint cannot be flooded by anonymous attackers and our crash counts remain trustworthy.
 
 #### CR-STORY-014 — Schema-Validate Every Payload
 
@@ -276,7 +276,7 @@ As a `data analyst`, I want raw crash events retained for 90 days and aggregated
 
 #### CR-STORY-027 — Read-Replica Isolation
 
-As an `on-call engineer`, I want dashboard read traffic to be served from read replicas so that a query spike during an incident never throttles the ingestion path, so that we never lose crash data while triaging an outage.
+As an `on-call engineer`, I want dashboard read traffic to be served from read replicas isolated from the ingestion path, so that a query spike during an incident never throttles ingestion and we never lose crash data while triaging an outage.
 
 ## CR-EPIC-08 — Alerting
 
@@ -382,7 +382,7 @@ As a `mobile app developer`, I want to mute an issue that I am actively investig
 
 #### CR-STORY-039 — Audit Log of Lifecycle Transitions
 
-As a `product manager`, I want a full audit log of every lifecycle transition (open, close, re-open, mute, snooze, assign) with timestamp and actor, so that post-incident reviews can reconstruct what was known when. Closing this loop ensures the [symbol upload](./glossary.md#symbol-upload) pipeline never has stale entries because resolutions are durable.
+As a `product manager`, I want a full audit log of every lifecycle transition (open, close, re-open, mute, snooze, assign) with timestamp and actor, so that post-incident reviews can reconstruct what was known when.
 
 ## Story-to-Stage Traceability Matrix
 
