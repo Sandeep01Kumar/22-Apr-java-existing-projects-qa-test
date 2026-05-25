@@ -175,7 +175,7 @@ As a `mobile app developer`, I want the ingestion endpoint to emit per-app uploa
 
 #### CR-STORY-016 — Reject Replay Attacks
 
-As a `product manager`, I want the ingestion endpoint to reject duplicate UUIDs within a configurable window, so that adversarial replay does not skew our crash-free metrics or alert thresholds.
+As a `product manager`, I want the ingestion endpoint to reject duplicate UUIDs within a configurable window, so that adversarial replay does not skew our [crash-free user](./glossary.md#crash-free-user) metrics or alert thresholds.
 
 ## CR-EPIC-05 — Symbolication & Deobfuscation
 
@@ -374,7 +374,7 @@ As an `on-call engineer`, I want to close an issue with a free-text resolution n
 
 #### CR-STORY-037 — Auto Re-Open on New Event
 
-As a `release manager`, I want closed issues to auto re-open when a new event arrives, so that no regression is missed because a fix in the previous release did not actually land.
+As a `release manager`, I want closed issues to auto re-open when a new event arrives, so that no [regression](./glossary.md#regression-alert) is missed because a fix in the previous release did not actually land.
 
 #### CR-STORY-038 — Mute Without Closing
 
