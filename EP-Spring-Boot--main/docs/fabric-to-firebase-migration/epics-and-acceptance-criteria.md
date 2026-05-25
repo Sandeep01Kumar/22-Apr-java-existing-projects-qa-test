@@ -214,7 +214,7 @@ flowchart LR
 - **Given** the team chooses Swift Package Manager instead of CocoaPods
 - **When** the Firebase iOS SDK package is added to the Xcode project via SPM and `FirebaseCrashlytics` is selected as a product
 - **Then** the `Package.resolved` file is updated and committed
-- **And** the choice (CocoaPods vs. SPM) is recorded in [`./runbook.md`](./runbook.md) Step 04
+- **And** the choice (CocoaPods vs. SPM) is recorded in [`./runbook.md` Step 04](./runbook.md#step-04--build-tooling-migration-ios-cocoapods--spm)
 
 #### FF-AC-015 — iOS Build Succeeds With Firebase Pod
 
@@ -406,7 +406,7 @@ flowchart LR
 
 - **Given** stakeholders (engineering lead, release manager, product manager) are convened
 - **When** the parity thresholds are negotiated and recorded
-- **Then** numerical thresholds are documented in [`./runbook.md`](./runbook.md) Step 08 (for example crash-free users delta ≤ 0.05 %, ANR rate delta ≤ 0.01 %, top-20 issue overlap ≥ 80 %)
+- **Then** numerical thresholds are documented in [`./runbook.md` Step 08](./runbook.md#step-08--parity-validation-between-fabric-and-firebase) (for example crash-free users delta ≤ 0.05 %, ANR rate delta ≤ 0.01 %, top-20 issue overlap ≥ 80 %)
 - **And** all stakeholders sign off on the thresholds before the validation window starts
 
 #### FF-AC-031 — Crash-Free Users Parity Within Threshold
@@ -517,7 +517,7 @@ flowchart LR
 - **Given** the Firebase Crashlytics dashboard for `MY_FIREBASE_PROJECT_ID`
 - **When** velocity alerts (sudden spike in crash rate) and regression alerts (re-appearance of resolved issues) are enabled with thresholds matching the legacy Fabric configuration
 - **Then** the alert configuration is visible in the Firebase Crashlytics "Alerts" settings
-- **And** the alert thresholds are documented in [`./runbook.md`](./runbook.md) Step 10
+- **And** the alert thresholds are documented in [`./runbook.md` Step 10](./runbook.md#step-10--alert--dashboard-re-routing)
 
 #### FF-AC-041 — Slack and PagerDuty Routing Verified
 
@@ -587,7 +587,7 @@ flowchart LR
 - **Given** the parity sign-off from `FF-AC-035` is at least 30 days old (rollback window expired)
 - **When** the Fabric organization workspace is archived (or its access is revoked for all team members) following the Fabric organization administrator's archival procedure
 - **Then** the Fabric web console returns "Workspace archived" or equivalent for the migrating organization
-- **And** an archival record is committed to [`./runbook.md`](./runbook.md) Step 11 with date and decision-maker role
+- **And** an archival record is committed to [`./runbook.md` Step 11](./runbook.md#step-11--decommissioning--team-enablement) with date and decision-maker role
 
 #### FF-AC-048 — Team Enablement Session Complete
 
@@ -613,7 +613,7 @@ The following items gate the cutover from Fabric to Firebase. Each item must be 
 
 ## Cross-References
 
-- [`./runbook.md`](./runbook.md) — Operational stepwise runbook with pre-conditions, action, validation, and rollback for each migration phase. Each step's anchor matches the corresponding `FF-EPIC-NN`.
+- [`./runbook.md`](./runbook.md) — Operational stepwise runbook with pre-conditions, action, validation, and rollback for each migration phase. Each step title maps to the corresponding `FF-EPIC-NN` title (the auto-generated step anchors use the `step-NN` prefix while epic anchors use the `ff-epic-NN` prefix; deep-links from acceptance criteria above use the concrete `./runbook.md#step-NN--…` anchors).
 - [`../crashlytics-pipeline/glossary.md`](../crashlytics-pipeline/glossary.md) — Domain glossary defining ANR, dSYM, mapping file, symbolication, fingerprint, velocity alert, regression alert, and other vocabulary used in the acceptance criteria above.
 - [`../README.md`](../README.md) — Planning documents index (`docs/README.md`).
 - [`../../README.md`](../../README.md) — Project root README (`README.md`).

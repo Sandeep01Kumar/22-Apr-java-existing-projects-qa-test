@@ -42,7 +42,7 @@ Additional `**And**` lines are permitted under any of the three clauses. Each cr
 
 These planning artifacts are **documentation only**. They introduce no executable code, no mobile-app skeleton, no CI/CD pipeline, no build-tool configuration, and no dependency changes anywhere in the repository.
 
-The host repository is a Spring Boot 3.4.4 / Java 17 backend service (see `../pom.xml` lines 8 and 30) whose runtime behavior — a RESTful Product CRUD API — is entirely unrelated to mobile crash reporting. The Spring Boot service is **not** the mobile application whose crashes would be reported by a Crashlytics pipeline; it is simply the repository that hosts these planning documents. No reader should infer that the Spring Boot service produces, consumes, or processes crash reports.
+The host repository is a Spring Boot 3.4.4 / Java 17 backend service (see [`../pom.xml`](../pom.xml) lines 8 and 30) whose runtime behavior — a RESTful Product CRUD API — is entirely unrelated to mobile crash reporting. The Spring Boot service is **not** the mobile application whose crashes would be reported by a Crashlytics pipeline; it is simply the repository that hosts these planning documents. No reader should infer that the Spring Boot service produces, consumes, or processes crash reports.
 
 ## 🔙 Back to project
 
